@@ -40,3 +40,8 @@ class RecipeSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             'id': {'read_only': True}
         }
+
+
+class RecipeDetailSerializer(RecipeSerializer):
+    ingredients = IngredientSerializer(many=True, read_only=True)
+    tags = TagSerializer(many=True, read_only=True)

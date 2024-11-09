@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from apps.recipe.models import Tag, Ingredient, Recipe
 from apps.recipe.serializers import (TagSerializer,
                                      IngredientSerializer,
-                                     RecipeSerializer)
+                                     RecipeSerializer, RecipeDetailSerializer)
 
 
 class BaseRecipeAttrViewSet(viewsets.GenericViewSet,
@@ -43,3 +43,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user).order_by('-id')
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return RecipeDetailSerializer
+        return self.serializer_class
