@@ -8,7 +8,7 @@ def sample_user(email='test@gmail.com', password='test123'):
     return get_user_model().objects.create_user(email=email, password=password)
 
 
-class ModelTests(TestCase):
+class TagModelTests(TestCase):
     def test_create_tag(self):
         """Test tag string representation."""
         tag = models.Tag.objects.create(name='Vegan', user=sample_user())
