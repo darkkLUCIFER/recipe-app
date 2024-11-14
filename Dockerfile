@@ -11,6 +11,7 @@ ARG REQUIREMENTS_FILE
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc && \
     apt-get install libpq-dev postgresql-client -y && \
+#    apt-get install jpeg-dev musl-dev zlib zlib-dev && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR ${APP_HOME}
@@ -23,6 +24,10 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 COPY . ${APP_HOME}
 
+RUN mkdir -p "/vol/web/media"
+RUN mkdir -p "/vol/web/static"
 RUN useradd -m user
+RUN chown -R user:user /vol/
+RUN chown -R 755 /vol/web
 USER user
 
