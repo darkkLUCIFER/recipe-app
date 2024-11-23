@@ -24,10 +24,10 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 COPY . ${APP_HOME}
 
-RUN mkdir -p "/vol/web/media"
+RUN mkdir -p "/vol/web/media/"
 RUN mkdir -p "/vol/web/static"
 RUN useradd -m user
 RUN chown -R user:user /vol/
-RUN chown -R 755 /vol/web
+RUN chown -R 755 /vol/
 USER user
 
